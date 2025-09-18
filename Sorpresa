@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sorpresa Virtual — Para Ti</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#E6F7FF;
+    --cloud:#FFFFFF;
+    --accent:#AEDFF7;
+    --text:#234;
+    --muted:#546;
+    --card:#ffffffcc;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,var(--bg) 0%, #DFF5FF 60%);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+
+  .card{
+    width:100%;
+    max-width:760px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+    border-radius:20px;
+    box-shadow: 0 10px 30px rgba(5,20,40,0.12);
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* decorative clouds */
+  .cloud{
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:360px;
+    height:360px;
+    background:radial-gradient(circle at 30% 30%, #fff 0 50%, transparent 51%),
+               radial-gradient(circle at 70% 40%, #fff 0 40%, transparent 41%),
+               radial-gradient(circle at 50% 70%, #fff 0 45%, transparent 46%);
+    opacity:0.95;
+    transform:rotate(12deg);
+    filter:blur(2px);
+  }
+  .cloud.small{
+    width:220px; height:220px;
+    top:auto; bottom:-60px; left:-60px;
+    transform:rotate(-6deg);
+  }
+
+  header{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    margin-bottom:8px;
+  }
+  .avatar{
+    width:86px; height:86px;
+    border-radius:18px;
+    background:linear-gradient(180deg,#fff,#f3fbff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 6px 18px rgba(15,45,75,0.08);
+    flex:0 0 86px;
+  }
+  /* simple kawaii character (generic puppy) */
+  .avatar svg{width:68px;height:68px}
+
+  h1{
+    font-size:20px;margin:0;
+    color: #0d3b5a;
+    letter-spacing:0.2px;
+  }
+  p.lead{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+  main{margin-top:14px}
+  .parts{display:grid;gap:12px}
+  .part{
+    background:var(--card);
+    border-radius:12px;
+    padding:14px;
+    box-shadow: 0 6px 14px rgba(10,30,50,0.04);
+    opacity:0; transform:translateY(10px) scale(.995);
+    transition: all .45s cubic-bezier(.2,.9,.25,1);
+    will-change:opacity,transform;
+    border:1px solid rgba(115,175,205,0.08);
+  }
+  .part.visible{opacity:1; transform:none}
+  .part h3{margin:0 0 6px;font-size:15px;color:#12455f}
+  .part p{margin:0;color: #1a3e55;line-height:1.45}
+
+  .controls{
+    display:flex;
+    gap:8px;
+    margin-top:16px;
+    align-items:center;
+  }
+  button.btn{
+    background:linear-gradient(180deg,var(--accent),#A6E0FD);
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    color:#06364d;
+    box-shadow: 0 6px 16px rgba(10,70,120,0.06);
+  }
+  button.ghost{
+    background:transparent;border:1px solid rgba(5,80,120,0.06); color:var(--text); font-weight:600;
+    padding:8px 12px;border-radius:10px; cursor:pointer;
+  }
+  .stickers{
+    margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .sticker{
+    background: #fff0;
+    border-radius:12px; border:1px dashed rgba(5,80,120,0.06);
+    padding:8px 12px; font-weight:600; color:#114059; font-size:13px;
+  }
+
+  footer{margin-top:18px; font-size:12px; color:var(--muted)}
+  .hint{font-size:13px;color:#0d4a63}
+
+  /* responsive */
+  @media (max-width:520px){
+    .avatar{width:68px;height:68px}
+    .card{padding:18px}
+  }
+</style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="cloud" aria-hidden="true"></div>
+    <div class="cloud small" aria-hidden="true"></div>
+
+    <header>
+      <div class="avatar" aria-hidden="true">
+        <!-- Generic cute puppy SVG (no copyrighted character) -->
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Icono kawaii">
+          <g fill="none" stroke="none">
+            <ellipse cx="60" cy="76" rx="28" ry="18" fill="#FFF" />
+            <path d="M30 48c0 18 10 30 30 30s30-12 30-30c0-18-12-34-30-34S30 30 30 48z" fill="#fff"/>
+            <circle cx="45" cy="54" r="6" fill="#0e3b56"/>
+            <circle cx="75" cy="54" r="6" fill="#0e3b56"/>
+            <path d="M48 70c4 3 8 3 12 0" stroke="#0e3b56" stroke-linecap="round" stroke-width="2" fill="none"/>
+            <path d="M22 52c-2 6 2 22 10 28" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+            <path d="M98 52c2 6-2 22-10 28" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+            <ellipse cx="60" cy="30" rx="40" ry="20" fill="#CFF1FF" opacity=".35"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <h1 id="title">Carta Sorpresa ✨ — Para alguien muy especial</h1>
+        <p class="lead">Haz clic en cada botón para revelar el siguiente mensaje 💙🐶☁️</p>
+      </div>
+    </header>
+
+    <main>
+      <div class="parts" id="parts">
+        <article class="part" id="part-1" aria-hidden="true">
+          <h3>Parte 1 🌸</h3>
+          <p>Hola mi amor ☁️ — Quiero comenzar diciendo algo sencillo... <strong>Eres lo mejor que me pasó en la vida.</strong></p>
+        </article>
+
+        <article class="part" id="part-2" aria-hidden="true">
+          <h3>Parte 2 🐶</h3>
+          <p>Cada vez que pienso en ti, me siento como si volara en una nubecita: feliz, suave y ligero. ✨</p>
+        </article>
+
+        <article class="part" id="part-3" aria-hidden="true">
+          <h3>Parte 3 💌</h3>
+          <p>Tú eres mi cielo azul, mi dulzura infinita y mi lugar favorito. Gracias por existir en mi vida. 🌸</p>
+        </article>
+
+        <article class="part" id="part-4" aria-hidden="true">
+          <h3>Parte 4 ✨</h3>
+          <p>A veces me pregunto cómo tuve tanta suerte de encontrarte — eres mi regalo, mi paz, mi sueño hecho realidad. 💕</p>
+        </article>
+
+        <article class="part" id="part-5" aria-hidden="true">
+          <h3>Parte 5 🌟</h3>
+          <p><strong>TE AMO</strong> — Con todo mi corazón.<br>— Tu <span id="apodo">[tu nombre/apodo]</span> 💖</p>
+        </article>
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="Controles">
+        <button class="btn" id="nextBtn">Revelar siguiente</button>
+        <button class="ghost" id="revealAll">Revelar todo</button>
+        <button class="ghost" id="resetBtn">Reiniciar</button>
+        <div style="flex:1"></div>
+        <button class="ghost" id="copyBtn" title="Copia todo el mensaje listo para WhatsApp">Copiar para WhatsApp</button>
+      </div>
+
+      <div class="stickers" aria-hidden="false">
+        <div class="sticker">︵‿︵‿୨♡୧‿︵‿︵ 🐶☁️💙</div>
+        <div class="sticker">｡･ﾟ♡ﾟ･｡🍓🐶☁️ ʚ Cinnamoroll ɞ</div>
+        <div class="sticker">✧･ﾟ: *✧･ﾟ:*  ☁️🐶 Mi Amor ☁️🐶</div>
+        <div class="sticker">♡ ૮₍ ´｡• ᵕ •｡` ₎ა ♡ Eres mi cielito</div>
+      </div>
+
+      <footer>
+        <div class="hint">Consejo: envía cada parte por WhatsApp una a una para crear sorpresa 🎁</div>
+      </footer>
+    </main>
+  </div>
+
+<script>
+  // Data (si quieres editar textos, cámbialos aquí)
+  const nickname = prompt("Escribe el nombre o apodo para la firma (ej: 'mi vida', 'tu [apodo]'):", "Tu apodo") || "tu [apodo]";
+  document.getElementById('apodo').textContent = nickname;
+
+  const parts = Array.from(document.querySelectorAll('.part'));
+  let idx = 0;
+
+  function showPart(i){
+    if(i<0 || i>=parts.length) return;
+    parts[i].classList.add('visible');
+    parts[i].setAttribute('aria-hidden','false');
+  }
+  function hideAll(){
+    parts.forEach(p=>{
+      p.classList.remove('visible');
+      p.setAttribute('aria-hidden','true');
+    });
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    if(idx < parts.length){
+      showPart(idx);
+      idx++;
+      if(idx >= parts.length){
+        document.getElementById('nextBtn').textContent = "Todos revelados ✓";
+        document.getElementById('nextBtn').disabled = true;
+      }
+    }
+  });
+  document.getElementById('revealAll').addEventListener('click', ()=>{
+    parts.forEach((p,i)=> setTimeout(()=> showPart(i), i*120));
+    idx = parts.length;
+    document.getElementById('nextBtn').textContent = "Todos revelados ✓";
+    document.getElementById('nextBtn').disabled = true;
+  });
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    hideAll();
+    idx = 0;
+    document.getElementById('nextBtn').textContent = "Revelar siguiente";
+    document.getElementById('nextBtn').disabled = false;
+  });
+
+  // prepare WhatsApp text
+  function buildWhatsAppText(){
+    const lines = parts.map(p => {
+      // use the visible text but when copying include all parts in order
+      const heading = p.querySelector('h3')?.textContent || '';
+      const body = p.querySelector('p')?.textContent || '';
+      return `${heading}\n${body}`;
+    });
+    return lines.join('\n\n') + `\n\n— Tu ${nickname} 💖`;
+  }
+
+  // copy to clipboard ready-to-paste (user can paste into WhatsApp)
+  document.getElementById('copyBtn').addEventListener('click', async ()=>{
+    const txt = buildWhatsAppText();
+    try{
+      await navigator.clipboard.writeText(txt);
+      document.getElementById('copyBtn').textContent = "Copiado ✓";
+      setTimeout(()=> document.getElementById('copyBtn').textContent = "Copiar para WhatsApp",1500);
+    }catch(e){
+      alert("No se pudo copiar automáticamente. Selecciona y copia manualmente:\n\n" + txt);
+    }
+  });
+
+  // small initial animation: reveal first part after load
+  window.addEventListener('load', ()=> {
+    setTimeout(()=> showPart(0), 500);
+    idx = 1;
+  });
+</script>
+</body>
+</html>
